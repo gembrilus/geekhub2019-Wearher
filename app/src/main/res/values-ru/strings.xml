@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">World Weather</string>
+    <string name="E">В</string>
+    <string name="ENE">ВСВ</string>
+    <string name="ESE">ВЮВ</string>
+    <string name="N">С</string>
+    <string name="NE">СВ</string>
+    <string name="NNE">ССВ</string>
+    <string name="NNW">ССЗ</string>
+    <string name="NW">СЗ</string>
+    <string name="S">Ю</string>
+    <string name="SE">ЮВ</string>
+    <string name="SSE">ЮЮВ</string>
+    <string name="SSW">ЮЮЗ</string>
+    <string name="SW">ЮЗ</string>
+    <string name="W">З</string>
+    <string name="WNW">ЗСЗ</string>
+    <string name="WSW">ЗЮЗ</string>
+    <string name="clouds_desc">Облачность, %</string>
+    <string name="english">Английский</string>
+    <string name="humidity_desc">Влажность: %1$10.2f%%</string>
+    <string name="imperial_speed_unit">миль/ч</string>
+    <string name="main_info_desc">Температура: %1$10.2f %2$s%n%nМин. темп-ра: %3$10.2f %2$s%n%nМакс. темп-ра: %4$10.2f %2$s%n%nАтм. давление: %5$10.2f hPa%n%nДавление на уровне моря: %6$10.2f hPa%n%nДавление на уровне земли: %7$10.2f hPa%n%nВлажность: %8$10.2f%%</string>
+    <string name="metric_speed_unit">м/с</string>
+    <string name="pressure_desc">Давление: %1$10.2f кПа</string>
+    <string name="rain_desc">Объем осадков за 3 часа, мм</string>
+    <string name="russian">Русский</string>
+    <string name="snow_desc">Объем осадков за 3 ч</string>
+    <string name="temperature_desc">Температура: %1$10.2f %2$s</string>
+    <string name="ukrainian">Украинский</string>
+    <string name="wind_desc">Ветер</string>
+    <string name="wind_data">Скорость, %1$s: %2$10.2f%n%nНаправление: %3$d град (%4$s)</string>
+    <string name="settings_city_country">Город, код страны</string>
+    <string name="settings_enter_sity">Введите город и код страны:</string>
+    <string name="settings_imperial_unit">Имперские</string>
+    <string name="settings_languages">Язык</string>
+    <string name="settings_metric_unit">Метрические</string>
+    <string name="settings_name">Параметры</string>
+    <string name="settings_standard_unit">По умолчанию</string>
+    <string name="settings_units">Единицы измерения</string>
+</resources>
