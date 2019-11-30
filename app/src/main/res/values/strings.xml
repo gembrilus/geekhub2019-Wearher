@@ -5,14 +5,8 @@
     <string name="baseUrlForecastMap" translatable="false">https://tile.openweathermap.org</string>
     <string name="units" translatable="false">units</string>
     <string name="lang" translatable="false">lang</string>
-    <string name="default_language" translatable="false">en</string>
     <string name="metric_units" translatable="false">metric</string>
     <string name="imperial_units" translatable="false">imperial</string>
-    <string name="english">English</string>
-    <string name="russian">Russian</string>
-    <string name="ukrainian">Ukrainian</string>
-    <string name="ua" translatable="false">ua</string>
-    <string name="ru" translatable="false">ru</string>
     <string name="keywords" translatable="false">q</string>
     <string name="default_keywords" translatable="false">Cherkasy,ua</string>
 
@@ -29,6 +23,8 @@
 
     <string name="imperial_speed_unit">miles/hour</string>
     <string name="metric_speed_unit">meter/sec</string>
+
+
     <string name="NNE">NNE</string>
     <string name="NE">NE</string>
     <string name="ENE">ENE</string>
@@ -45,20 +41,24 @@
     <string name="NW">NW</string>
     <string name="NNW">NNW</string>
     <string name="N">N</string>
+
+
     <string name="settings_enter_sity">Enter city and country code:</string>
     <string name="settings_city_country">City,country code</string>
     <string name="settings_units">Measurement units</string>
     <string name="settings_standard_unit">Standart</string>
     <string name="settings_metric_unit">Metric</string>
     <string name="settings_imperial_unit">Imperial</string>
-    <string name="settings_languages">Languages</string>
     <string name="settings_name">Settings</string>
+
+
     <string name="no_network_connection">No network connection</string>
     <string name="no_url_or_broken">On requested URL found nothing or response is not correct</string>
-    <string name="server_error_500">Server error 500</string>
+    <string name="server_error_500">500: Internal server error</string>
     <string name="unknown_error">Any happened. Error code %1$d</string>
     <string name="programm_error">Request was successful.%nThere are any problems in your app</string>
     <string name="error">Error!</string>
+
 
 
 </resources>

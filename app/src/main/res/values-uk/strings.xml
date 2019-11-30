@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">World Weather</string>
+
     <string name="E">Сх</string>
     <string name="ENE">Сх-Пн-Сх</string>
     <string name="ESE">Сх-Пд-Сх</string>
@@ -17,26 +18,33 @@
     <string name="W">З</string>
     <string name="WNW">З-Пн-З</string>
     <string name="WSW">З-Пд-З</string>
+
     <string name="clouds_desc">Хмарність, %</string>
-    <string name="english">Англійська</string>
     <string name="humidity_desc">Вологість: %1$10.2f%%</string>
     <string name="imperial_speed_unit">миль/год</string>
     <string name="main_info_desc">Температура: %1$10.2f %2$s%n%nМін. темп-ра: %3$10.2f %2$s%n%nМакс. темп-ра: %4$10.2f %2$s%n%nАтм. тиск: %5$10.2f hPa%n%nТиск на рівні моря: %6$10.2f hPa%n%nТиск на рівні землі: %7$10.2f hPa%n%nВологість: %8$10.2f%%</string>
     <string name="metric_speed_unit">м/с</string>
     <string name="pressure_desc">Тиск: %1$10.2f кПа</string>
     <string name="rain_desc">Об\'єм опадів за 3 години, мм</string>
-    <string name="russian">Російська</string>
     <string name="snow_desc">Об\'єм опадів за 3 години</string>
     <string name="temperature_desc">Температура: %1$10.2f %2$s</string>
-    <string name="ukrainian">Українська</string>
     <string name="wind_data">Швидкість, %1$s: %2$10.2f%n%nНапрямок: %3$d град (%4$s)</string>
     <string name="wind_desc">Вітер</string>
+
+
     <string name="settings_city_country">Місто, код країни</string>
     <string name="settings_enter_sity">Введіть місто та код країни</string>
     <string name="settings_imperial_unit">Імперські</string>
-    <string name="settings_languages">Мова</string>
     <string name="settings_metric_unit">Метричні</string>
     <string name="settings_name">Параметри</string>
     <string name="settings_standard_unit">За замовчанням</string>
     <string name="settings_units">Одиниці вимірювання</string>
+
+
+    <string name="error">Сталася помилка!</string>
+    <string name="no_network_connection">Відсутній інтернет</string>
+    <string name="no_url_or_broken">За вказаним URL нічого не знайдено або запит є не корректним</string>
+    <string name="programm_error">Запит пройшов вдало.%nІснує якась внутрішня проблема програми.</string>
+    <string name="server_error_500">500: Внутрішня помилка сервера</string>
+    <string name="unknown_error">Невідома помилка. Код помилки %1$d</string>
 </resources>

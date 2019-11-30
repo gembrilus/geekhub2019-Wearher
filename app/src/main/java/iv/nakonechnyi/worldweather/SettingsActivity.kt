@@ -38,14 +38,6 @@ class SettingsActivity :
         )
     }
 
-    private val langMap by lazy {
-        mapOf(
-            getString(R.string.default_language) to getString(R.string.english),
-            getString(R.string.ru) to getString(R.string.russian),
-            getString(R.string.ua) to getString(R.string.ukrainian)
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -55,7 +47,6 @@ class SettingsActivity :
         val map = spHolder.map
         val _keywords = map[getString(R.string.keywords)]
         val _unit = map[getString(R.string.units)]
-        val _lang = langMap[map[getString(R.string.lang)]]
 
         with(keywords) {
             setText(_keywords)
@@ -85,42 +76,9 @@ class SettingsActivity :
                 spHolder.setUnits(unit)
             }
         }
-
-        with(languages) {
-            adapter = ArrayAdapter(
-                this@SettingsActivity,
-                android.R.layout.simple_list_item_1,
-                langMap.values.toList()
-            ).apply {
-                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            }
-
-            forEachIndexed { i, view ->
-                if ((view as TextView).text.toString() == _lang) languages.setSelection(i)
-            }
-
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(p0: AdapterView<*>?) {}
-
-                override fun onItemSelected(
-                    adapter: AdapterView<*>?,
-                    view: View,
-                    pos: Int,
-                    id: Long
-                ) {
-                    val lang = when ((view as TextView).text) {
-                        getString(R.string.russian) -> getString(R.string.ru)
-                        getString(R.string.ukrainian) -> getString(R.string.ua)
-                        else -> getString(R.string.default_language)
-                    }
-                    spHolder.setLanguage(lang)
-                }
-            }
-        }
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
         setResult(Activity.RESULT_OK, Intent().putExtra(SETTINGS_CHANGED, true))
     }
 }
-

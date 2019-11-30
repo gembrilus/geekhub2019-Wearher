@@ -9,6 +9,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import iv.nakonechnyi.worldweather.R
 import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
 import iv.nakonechnyi.worldweather.net.interseptors.AuthInterceptor
+import iv.nakonechnyi.worldweather.net.interseptors.LangInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
@@ -34,10 +35,10 @@ class WeatherRequest(
     private val okHttpClient = OkHttpClient.Builder()
         .cache(Cache(cacheDir, 1000000))
         .protocols(listOf(Protocol.HTTP_1_1))
+        .addInterceptor(LangInterceptor(context))
         .addInterceptor(AuthInterceptor(context))
         .addInterceptor(ChuckerInterceptor(context))
         .build()
-
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(context.getString(R.string.baseUrlForecast))
