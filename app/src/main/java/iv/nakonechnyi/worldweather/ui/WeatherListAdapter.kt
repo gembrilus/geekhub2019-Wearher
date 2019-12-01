@@ -10,7 +10,7 @@ import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
 import iv.nakonechnyi.worldweather.data.WeatherConditions
 import iv.nakonechnyi.worldweather.etc.SPHolder
 import iv.nakonechnyi.worldweather.etc.SP_FILE
-import iv.nakonechnyi.worldweather.model.WeatherModel
+import iv.nakonechnyi.worldweather.ui.model.WeatherModel
 import iv.nakonechnyi.worldweather.utils.getImageIdByFileName
 import iv.nakonechnyi.worldweather.utils.getTemperatureSymbol
 import iv.nakonechnyi.worldweather.utils.toDate

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import iv.nakonechnyi.worldweather.R
-import iv.nakonechnyi.worldweather.model.WeatherModel
+import iv.nakonechnyi.worldweather.ui.model.WeatherModel
 import kotlinx.android.synthetic.main.fragment_weather_list.*
 import kotlinx.android.synthetic.main.fragment_weather_list.view.*
 import java.util.*

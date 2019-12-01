@@ -13,7 +13,7 @@ import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
 import iv.nakonechnyi.worldweather.data.WeatherConditions
 import iv.nakonechnyi.worldweather.etc.SP_FILE
 import iv.nakonechnyi.worldweather.etc.WEATHER_POS
-import iv.nakonechnyi.worldweather.model.WeatherModel
+import iv.nakonechnyi.worldweather.ui.model.WeatherModel
 import iv.nakonechnyi.worldweather.utils.*
 import kotlinx.android.synthetic.main.view_weather_item.view.*
 
@@ -88,9 +88,9 @@ class ItemWeatherFragment : Fragment(){
                         context.getString(R.string.wind_data, getSpeedUnits(context, unit), speed, deg, getHumanReadableWindDirection(context, deg!!))
                     }
 
-                    clouds.text = weatherConditions.clouds?.get("all").toString()
-                    rain.text = weatherConditions.rain?.get("3h").toString()
-                    snow.text = weatherConditions.snow?.get("3h").toString()
+                    clouds.text = weatherConditions.clouds?.get("all")?.toString() ?: "-"
+                    rain.text = weatherConditions.rain?.get("3h")?.toString() ?: "-"
+                    snow.text = weatherConditions.snow?.get("3h")?.toString() ?: "-"
                 }
             }
         }

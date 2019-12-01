@@ -10,8 +10,8 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import iv.nakonechnyi.worldweather.etc.ON_CHANGE_SETTINGS_CODE
 import iv.nakonechnyi.worldweather.etc.SETTINGS_CHANGED
-import iv.nakonechnyi.worldweather.model.WeatherModel
-import iv.nakonechnyi.worldweather.ui.ItemWeatherFragment
+import iv.nakonechnyi.worldweather.ui.model.WeatherModel
+import iv.nakonechnyi.worldweather.ui.MainDetailedFragment
 import iv.nakonechnyi.worldweather.ui.WeatherListAdapter
 import iv.nakonechnyi.worldweather.ui.WeatherListFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,7 +37,7 @@ class MainActivity :
             }
             if (dualPane) {
                 replace(
-                    R.id.item_weather_container, ItemWeatherFragment.newInstance(mPosition)
+                    R.id.item_weather_container, MainDetailedFragment.newInstance(mPosition)
                 )
             }
             commit()
@@ -67,7 +67,7 @@ class MainActivity :
 
     override fun onClick(pos: Int) {
         mPosition = pos
-        val fragment = ItemWeatherFragment.newInstance(pos)
+        val fragment = MainDetailedFragment.newInstance(pos)
         val transaction = supportFragmentManager.beginTransaction()
 
         with(transaction) {

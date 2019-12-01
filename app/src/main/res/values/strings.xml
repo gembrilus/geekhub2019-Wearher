@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">World Weather</string>
+
+    <string name="title_detailed_weather">Weather Details</string>
+    <string name="title_map">Weather Map</string>
+
     <string name="APPID" translatable="false">d0c7945e3b5cf2f90386901ed2fad2a2</string>
     <string name="baseUrlForecast" translatable="false">https://api.openweathermap.org</string>
     <string name="baseUrlForecastMap" translatable="false">https://tile.openweathermap.org</string>
+
+
+
     <string name="units" translatable="false">units</string>
     <string name="lang" translatable="false">lang</string>
     <string name="metric_units" translatable="false">metric</string>

@@ -1,8 +1,6 @@
-package iv.nakonechnyi.worldweather.net
+package iv.nakonechnyi.worldweather.net.weatherservice
 
-import android.app.Service
 import android.content.Context
-import android.net.ConnectivityManager
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -15,13 +13,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import retrofit2.*
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.net.UnknownHostException
 
 class WeatherRequest(
     private val context: Context,
     private val map: Map<String, String>,
-    private val callback: OnWeatherResponse,
-    private val afterRun: (()-> Unit)? = null
+    private val callback: Callback<DailyWeatherHolder>
 ) {
 
     private val cacheDir by lazy {
@@ -50,36 +46,6 @@ class WeatherRequest(
 
     fun make() {
         val call = client.getWeatherForecast(map)
-        call.enqueue(object : Callback<DailyWeatherHolder> {
-            override fun onFailure(call: Call<DailyWeatherHolder>, t: Throwable) {
-                (context.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager).run {
-                    if (activeNetwork == null || t is UnknownHostException) {
-                        callback.onNoNetworkConnection(t)
-                    }
-                    if (call.isExecuted) callback.onRequestFailed(t)
-                }
-
-                afterRun?.invoke()
-
-            }
-
-            override fun onResponse(
-                call: Call<DailyWeatherHolder>,
-                response: Response<DailyWeatherHolder>
-            ) {
-                if (response.isSuccessful) callback.onResponseSuccess(response.body())
-                else {
-                    when (response.code()) {
-                        400, 404 -> callback.onResponseFailed()
-                        500 -> callback.onServerError()
-                        else -> callback.onUnknownError(response.code())
-                    }
-                }
-
-                afterRun?.invoke()
-            }
-
-        })
+        call.enqueue(callback)
     }
-
 }

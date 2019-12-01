@@ -1,4 +1,4 @@
-package iv.nakonechnyi.worldweather.net
+package iv.nakonechnyi.worldweather.net.weatherservice
 
 import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
 import retrofit2.Call
