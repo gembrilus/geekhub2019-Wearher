@@ -6,9 +6,7 @@
 
     <string name="APPID" translatable="false">d0c7945e3b5cf2f90386901ed2fad2a2</string>
     <string name="baseUrlForecast" translatable="false">https://api.openweathermap.org</string>
-    <string name="baseUrlForecastMap" translatable="false">https://tile.openweathermap.org</string>
-
-
+    <string name="baseUrlForecastMap" translatable="false">https://tile.openweathermap.org/map/%s/%d/%d/%d.png?appid=%s</string>
 
     <string name="units" translatable="false">units</string>
     <string name="lang" translatable="false">lang</string>
@@ -53,10 +51,13 @@
     <string name="settings_enter_sity">Enter city and country code:</string>
     <string name="settings_city_country">City,country code</string>
     <string name="settings_units">Measurement units</string>
-    <string name="settings_standard_unit">Standart</string>
+    <string name="settings_standard_unit">Standard</string>
     <string name="settings_metric_unit">Metric</string>
     <string name="settings_imperial_unit">Imperial</string>
     <string name="settings_name">Settings</string>
+
+
+    <string name="map_layer_default_value" translatable="false">clouds_new</string>
 
 
     <string name="no_network_connection">No network connection</string>

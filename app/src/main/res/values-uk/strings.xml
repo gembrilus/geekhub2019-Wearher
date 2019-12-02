@@ -47,4 +47,6 @@
     <string name="programm_error">Запит пройшов вдало.%nІснує якась внутрішня проблема програми.</string>
     <string name="server_error_500">500: Внутрішня помилка сервера</string>
     <string name="unknown_error">Невідома помилка. Код помилки %1$d</string>
+    <string name="title_detailed_weather">Погодні умови</string>
+    <string name="title_map">Погодна мапа</string>
 </resources>

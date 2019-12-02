@@ -6,6 +6,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import iv.nakonechnyi.worldweather.R
 import iv.nakonechnyi.worldweather.data.*
 import iv.nakonechnyi.worldweather.etc.SPHolder
 import iv.nakonechnyi.worldweather.etc.SP_FILE
@@ -23,6 +24,11 @@ class WeatherModel(application: Application) :
     Callback<DailyWeatherHolder> {
 
     val data = MutableLiveData<DailyWeatherHolder?>()
+
+    val size get() = data.value?.list?.size ?: 0
+
+    val mapLayer = MutableLiveData<String>()
+
     private val ctx = application.applicationContext
     private val spHolder = SPHolder(ctx, ctx.getSharedPreferences(SP_FILE, Context.MODE_PRIVATE))
 
@@ -38,7 +44,7 @@ class WeatherModel(application: Application) :
         ).make()
     }
 
-    val size get() = data.value?.list?.size ?: 0
+
 
     override fun onFailure(call: Call<DailyWeatherHolder>, t: Throwable) {
         (ctx.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager).run {

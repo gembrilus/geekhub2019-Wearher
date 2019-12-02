@@ -35,4 +35,20 @@
         <item>zh_tw</item>
     </string-array>
 
+    <string-array name="mapLayers">
+        <item>Clouds</item>
+        <item>Precipitation</item>
+        <item>Pressure</item>
+        <item>Wind</item>
+        <item>Temperature</item>
+    </string-array>
+
+    <string-array name="mapLayers_values">
+        <item>clouds_new</item>
+        <item>precipitation_new</item>
+        <item>pressure_new</item>
+        <item>wind_new</item>
+        <item>temp_new</item>
+    </string-array>
+
 </resources>
