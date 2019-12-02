@@ -15,8 +15,9 @@ Weather map uses [Retrofit][2], [OkHttp][3], [Moshi][4], [Chucker][5], [GoogleMa
 Download
 --------
 
-
-![](qr-code.gif)
+<p align="center">
+  <img src="qr-code.gif" alt="qrcode gif"/>
+</p>
 
 
 Author
@@ -26,10 +27,6 @@ Maksim Nakonechnyi - @gembrilus on GitHub
 License
 -------
 MIT. See the [LICENSE][7] file for details.
-
-<p align="center">
-  <img src="qr-code.gif" alt="qrcode gif"/>
-</p>
 
 [1]: https://openweathermap.org/api
 [2]: https://square.github.io/retrofit/
