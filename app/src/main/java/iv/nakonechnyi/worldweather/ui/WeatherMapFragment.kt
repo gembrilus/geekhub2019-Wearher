@@ -25,7 +25,7 @@ class WeatherMapFragment : SupportMapFragment(), OnMapReadyCallback {
     private val model by lazy {
         ViewModelProviders.of(requireActivity()).get(WeatherModel::class.java)
     }
-    private lateinit var mMap: GoogleMap
+    private var mMap: GoogleMap? = null
     private lateinit var tileOverlay: TileOverlay
     private lateinit var tileProvider: TileProvider
     private val mapLayers by lazy { requireContext().resources.getStringArray(R.array.mapLayers) }
@@ -60,7 +60,7 @@ class WeatherMapFragment : SupportMapFragment(), OnMapReadyCallback {
         }
 
         model.mapLayer.observe(this, Observer {
-            onMapReady(mMap)
+            mMap?.let { it1 -> onMapReady(it1) }
         })
     }
 
@@ -78,7 +78,7 @@ class WeatherMapFragment : SupportMapFragment(), OnMapReadyCallback {
 
         tileProvider = TileProvider(model.mapLayer.value ?: requireContext().resources.getString(R.string.map_layer_default_value))
 
-        tileOverlay = mMap.addTileOverlay(
+        tileOverlay = mMap!!.addTileOverlay(
             TileOverlayOptions()
                 .tileProvider(tileProvider)
                 .transparency(0.5f)

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.core.view.isVisible
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import iv.nakonechnyi.worldweather.etc.ON_CHANGE_SETTINGS_CODE
 import iv.nakonechnyi.worldweather.etc.SETTINGS_CHANGED
@@ -20,7 +20,7 @@ class MainActivity :
     AppCompatActivity(),
     WeatherListAdapter.OnSimpleClickListener {
 
-    private val dualPane by lazy { item_weather_container?.isVisible ?: false }
+    private val dualPane get() = item_weather_container != null
 
     private val model by lazy { ViewModelProviders.of(this).get(WeatherModel::class.java) }
 
@@ -29,13 +29,15 @@ class MainActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+Toast.makeText(this, dualPane.toString(), Toast.LENGTH_SHORT).show()
         val transaction = supportFragmentManager.beginTransaction()
         with(transaction) {
             if (savedInstanceState == null) {
                 add(R.id.main_fragment_container, WeatherListFragment.newInstance())
             }
             if (dualPane) {
+                if (supportFragmentManager.backStackEntryCount > 0)
+                    supportFragmentManager.popBackStack()
                 replace(
                     R.id.item_weather_container, MainDetailedFragment.newInstance(mPosition)
                 )
@@ -72,6 +74,8 @@ class MainActivity :
 
         with(transaction) {
             if (dualPane) {
+                if (supportFragmentManager.backStackEntryCount > 0)
+                    supportFragmentManager.popBackStack()
                 replace(R.id.item_weather_container, fragment)
             } else {
                 replace(R.id.main_fragment_container, fragment)

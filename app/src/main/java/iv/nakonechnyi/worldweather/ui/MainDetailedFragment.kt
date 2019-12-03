@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import iv.nakonechnyi.worldweather.R
 import iv.nakonechnyi.worldweather.etc.WEATHER_POS
+import kotlinx.android.synthetic.main.fragment_main_detailed.*
 import kotlinx.android.synthetic.main.fragment_main_detailed.view.*
 
 class MainDetailedFragment : Fragment() {
 
     private var mPosition: Int = 0
+
+    private val itemWeatherFragment get() = ItemWeatherFragment.newInstance(mPosition)
 
     companion object{
         fun newInstance(pos: Int) = MainDetailedFragment().apply {
@@ -36,18 +39,19 @@ class MainDetailedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_fragment_container, ItemWeatherFragment.newInstance(mPosition))
-            .commit()
+            childFragmentManager.beginTransaction()
+                .replace(R.id.nav_fragment_container, itemWeatherFragment)
+                .commit()
 
         view.nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        val transaction = childFragmentManager.beginTransaction()
+        if (nav_fragment_container == null) return@OnNavigationItemSelectedListener false
         when(it.itemId){
             R.id.navigation_home -> {
-                transaction.replace(R.id.nav_fragment_container, ItemWeatherFragment.newInstance(mPosition)).commit()
+                transaction.replace(R.id.nav_fragment_container, itemWeatherFragment).commit()
                 true
             }
             R.id.navigation_map -> {
