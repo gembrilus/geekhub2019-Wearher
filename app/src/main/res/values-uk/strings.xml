@@ -25,8 +25,8 @@
     <string name="main_info_desc">Температура: %1$10.2f %2$s%n%nМін. темп-ра: %3$10.2f %2$s%n%nМакс. темп-ра: %4$10.2f %2$s%n%nАтм. тиск: %5$10.2f hPa%n%nТиск на рівні моря: %6$10.2f hPa%n%nТиск на рівні землі: %7$10.2f hPa%n%nВологість: %8$10.2f%%</string>
     <string name="metric_speed_unit">м/с</string>
     <string name="pressure_desc">Тиск: %1$10.2f кПа</string>
-    <string name="rain_desc">Об\'єм опадів за 3 години, мм</string>
-    <string name="snow_desc">Об\'єм опадів за 3 години</string>
+    <string name="rain_desc">Дощ: Об\'єм опадів за 3 години, мм</string>
+    <string name="snow_desc">Сніг: Об\'єм опадів за 3 години</string>
     <string name="temperature_desc">Температура: %1$10.2f %2$s</string>
     <string name="wind_data">Швидкість, %1$s: %2$10.2f%n%nНапрямок: %3$d град (%4$s)</string>
     <string name="wind_desc">Вітер</string>
@@ -49,4 +49,9 @@
     <string name="unknown_error">Невідома помилка. Код помилки %1$d</string>
     <string name="title_detailed_weather">Погодні умови</string>
     <string name="title_map">Погодна мапа</string>
+    <string name="map_layer_clouds">Хмарність</string>
+    <string name="map_layer_precipitation">Атм. опади</string>
+    <string name="map_layer_pressure">Атм. тиск</string>
+    <string name="map_layer_temperature">Температура</string>
+    <string name="map_layer_wind">Вітер</string>
 </resources>

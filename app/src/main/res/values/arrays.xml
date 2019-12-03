@@ -36,11 +36,11 @@
     </string-array>
 
     <string-array name="mapLayers">
-        <item>Clouds</item>
-        <item>Precipitation</item>
-        <item>Pressure</item>
-        <item>Wind</item>
-        <item>Temperature</item>
+        <item>@string/map_layer_clouds</item>
+        <item>@string/map_layer_precipitation</item>
+        <item>@string/map_layer_pressure</item>
+        <item>@string/map_layer_wind</item>
+        <item>@string/map_layer_temperature</item>
     </string-array>
 
     <string-array name="mapLayers_values">

@@ -61,5 +61,4 @@ class MainDetailedFragment : Fragment() {
             else -> false
         }
     }
-
 }

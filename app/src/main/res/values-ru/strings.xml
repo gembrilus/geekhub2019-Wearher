@@ -26,8 +26,8 @@
     <string name="main_info_desc">Температура: %1$10.2f %2$s%n%nМин. темп-ра: %3$10.2f %2$s%n%nМакс. темп-ра: %4$10.2f %2$s%n%nАтм. давление: %5$10.2f hPa%n%nДавление на уровне моря: %6$10.2f hPa%n%nДавление на уровне земли: %7$10.2f hPa%n%nВлажность: %8$10.2f%%</string>
     <string name="metric_speed_unit">м/с</string>
     <string name="pressure_desc">Давление: %1$10.2f кПа</string>
-    <string name="rain_desc">Объем осадков за 3 часа, мм</string>
-    <string name="snow_desc">Объем осадков за 3 ч</string>
+    <string name="rain_desc">Дождь: Объем осадков за 3 часа, мм</string>
+    <string name="snow_desc">Снег: Объем осадков за 3 ч</string>
     <string name="temperature_desc">Температура: %1$10.2f %2$s</string>
     <string name="wind_desc">Ветер</string>
     <string name="wind_data">Скорость, %1$s: %2$10.2f%n%nНаправление: %3$d град (%4$s)</string>
@@ -50,4 +50,9 @@
     <string name="unknown_error">Неизвестная ошибка. Код ошибки %1$d</string>
     <string name="title_detailed_weather">Погодные условя</string>
     <string name="title_map">Погодная карта</string>
+    <string name="map_layer_clouds">Облака</string>
+    <string name="map_layer_precipitation">Атм. осадки</string>
+    <string name="map_layer_pressure">Давление</string>
+    <string name="map_layer_temperature">Температура</string>
+    <string name="map_layer_wind">Ветер</string>
 </resources>

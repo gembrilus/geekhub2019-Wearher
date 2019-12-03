@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/sunny"
+        android:icon="@drawable/ic_cloudy"
         android:title="@string/title_detailed_weather" />
 
     <item
         android:id="@+id/navigation_map"
-        android:icon="@drawable/map"
+        android:icon="@drawable/ic_map"
         android:title="@string/title_map" />
 
 </menu>

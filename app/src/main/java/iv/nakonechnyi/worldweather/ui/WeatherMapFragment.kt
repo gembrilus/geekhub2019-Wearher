@@ -54,6 +54,7 @@ class WeatherMapFragment : SupportMapFragment(), OnMapReadyCallback {
                 override fun onNothingSelected(p0: AdapterView<*>?){}
                 override fun onItemSelected(adapterView: AdapterView<*>?, itemView: View?, pos: Int, id: Long) {
                     val values = context.resources.getStringArray(R.array.mapLayers_values)
+                    tileOverlay.remove()
                     model.mapLayer.value = values[pos]
                 }
             }
@@ -76,16 +77,16 @@ class WeatherMapFragment : SupportMapFragment(), OnMapReadyCallback {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lon), 5f))
         }
 
-        tileProvider = TileProvider(model.mapLayer.value ?: requireContext().resources.getString(R.string.map_layer_default_value))
+        tileProvider = TileProvider(model.mapLayer.value)
 
         tileOverlay = mMap!!.addTileOverlay(
             TileOverlayOptions()
                 .tileProvider(tileProvider)
-                .transparency(0.5f)
+                .transparency(0.2f)
         )
     }
 
-    private inner class TileProvider(private val layer: String) : UrlTileProvider(256, 256) {
+    private inner class TileProvider(private val layer: String?) : UrlTileProvider(256, 256) {
         override fun getTileUrl(x: Int, y: Int, zoom: Int): URL? {
             val s = String.format(
                 requireContext().resources.getString(R.string.baseUrlForecastMap,

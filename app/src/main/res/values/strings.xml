@@ -58,6 +58,11 @@
 
 
     <string name="map_layer_default_value" translatable="false">clouds_new</string>
+    <string name="map_layer_clouds">Clouds</string>
+    <string name="map_layer_precipitation">Precipitation</string>
+    <string name="map_layer_wind">Wind</string>
+    <string name="map_layer_pressure">Pressure</string>
+    <string name="map_layer_temperature">Temperature</string>
 
 
     <string name="no_network_connection">No network connection</string>
