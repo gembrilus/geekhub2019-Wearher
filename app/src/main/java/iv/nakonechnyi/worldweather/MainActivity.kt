@@ -1,19 +1,17 @@
 package iv.nakonechnyi.worldweather
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
-import iv.nakonechnyi.worldweather.database.dao.WeatherDao
+import iv.nakonechnyi.worldweather.etc.BROADCAST_ACTION_FILTER
 import iv.nakonechnyi.worldweather.etc.ON_CHANGE_SETTINGS_CODE
 import iv.nakonechnyi.worldweather.etc.SETTINGS_CHANGED
-import iv.nakonechnyi.worldweather.etc.SPHolder
-import iv.nakonechnyi.worldweather.etc.SP_FILE
+import iv.nakonechnyi.worldweather.services.ServiceReceiver
 import iv.nakonechnyi.worldweather.services.WeatherService
 import iv.nakonechnyi.worldweather.ui.model.WeatherModel
 import iv.nakonechnyi.worldweather.ui.MainDetailedFragment
@@ -31,15 +29,18 @@ class MainActivity :
 
     private var mPosition: Int = 0
 
+    private val receiver by lazy { ServiceReceiver() }
+
+    private val listFragment by lazy { WeatherListFragment.newInstance() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startService(Intent(this, WeatherService::class.java))
 
         val transaction = supportFragmentManager.beginTransaction()
         with(transaction) {
             if (savedInstanceState == null) {
-                add(R.id.main_fragment_container, WeatherListFragment.newInstance())
+                add(R.id.main_fragment_container, listFragment)
             }
             if (dualPane) {
                 if (supportFragmentManager.backStackEntryCount > 0)
@@ -50,6 +51,18 @@ class MainActivity :
             }
             commit()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        registerReceiver(receiver, IntentFilter(BROADCAST_ACTION_FILTER))
+        receiver.serviceStatusListener = listFragment
+        startService(Intent(this, WeatherService::class.java))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,9 +82,10 @@ class MainActivity :
         if (data == null) return
         if(resultCode == Activity.RESULT_OK && requestCode == ON_CHANGE_SETTINGS_CODE){
             if(data.getBooleanExtra(SETTINGS_CHANGED, false))
+
             startService(Intent(this, WeatherService::class.java))
             model.refreshModel()
-            /*model.fetchWeatherForecast()*/
+
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
