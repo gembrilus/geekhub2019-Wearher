@@ -19,11 +19,16 @@ import kotlinx.android.synthetic.main.fragment_weather_list.view.*
 
 class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
 
-    private val model by lazy { ViewModelProviders.of(requireActivity()).get(WeatherModel::class.java) }
+    private var model: WeatherModel? = null
     private val clickListener by lazy { activity as WeatherListAdapter.OnSimpleClickListener }
 
     companion object{
         fun newInstance() = WeatherListFragment()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        model = ViewModelProviders.of(requireActivity()).get(WeatherModel::class.java)
     }
 
     override fun onCreateView(
@@ -34,7 +39,7 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val mAdapter = WeatherListAdapter(model).apply {
+        val mAdapter = WeatherListAdapter(model!!).apply {
             listener = clickListener
         }
 
@@ -44,25 +49,29 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
         }
 
         swipe.setOnRefreshListener {
-            model.refreshModel()
+            model!!.refreshModel()
         }
 
-        model.data.observe(this, Observer {
+        model!!.data.observe(this, Observer {
             mAdapter.notifyDataSetChanged()
             swipe.isRefreshing = false
         })
     }
 
     override fun start() {
-        swipe.isRefreshing = true
+        if (swipe != null) {
+            swipe.isRefreshing = true
+        }
     }
 
     override fun update() {
-        model.refreshModel()
+        model?.refreshModel()
     }
 
     override fun stop() {
-        swipe.isRefreshing = false
+        if (swipe != null) {
+            swipe.isRefreshing = false
+        }
     }
 
     override fun onServiceError(status: Status) {

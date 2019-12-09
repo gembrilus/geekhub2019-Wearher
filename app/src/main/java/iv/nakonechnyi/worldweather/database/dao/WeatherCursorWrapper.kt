@@ -32,17 +32,17 @@ class WeatherCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
         val weatherDescription = getString(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_DESC))
         val iconName = getString(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_ICON))
         val typeClouds = getType(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_CLOUDS))
-        val clouds = if (typeClouds == Cursor.FIELD_TYPE_NULL) {
+        val clouds = if (typeClouds != Cursor.FIELD_TYPE_NULL) {
             getDouble(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_CLOUDS))
         } else null
         val windSpeed = getDouble(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_WIND_SPEED))
         val windDegrees = getDouble(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_WIND_DEGREES))
         val typeRain = getType(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_RAIN))
-        val rain = if (typeRain == Cursor.FIELD_TYPE_NULL){
+        val rain = if (typeRain != Cursor.FIELD_TYPE_NULL){
             getDouble(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_RAIN))
         } else null
         val typeSnow = getType(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_SNOW))
-        val snow = if (typeSnow == Cursor.FIELD_TYPE_NULL){
+        val snow = if (typeSnow != Cursor.FIELD_TYPE_NULL){
             getDouble(getColumnIndex(WeatherConditionsEntry.COLUMN_NAME_SNOW))
         } else null
 
