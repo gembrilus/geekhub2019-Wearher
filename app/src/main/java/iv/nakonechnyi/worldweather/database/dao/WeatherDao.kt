@@ -5,11 +5,8 @@ import android.content.Context
 import iv.nakonechnyi.worldweather.data.*
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.CityEntry
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.WeatherConditionsEntry
-import java.util.*
 
-object WeatherDao: Observable() {
-
-    lateinit var context: Context
+class WeatherDao(private val context: Context) {
 
     private val database get() = WeatherDbHelper(context).writableDatabase
 
@@ -28,7 +25,6 @@ object WeatherDao: Observable() {
                 getContentValuesOfWeather(it, cityId)
             )
         }
-        notifyObservers()
     }
 
     fun take(cityName: String): DailyWeatherHolder? {
@@ -67,7 +63,6 @@ object WeatherDao: Observable() {
             )
         }
         insert(dailyWeatherHolder)
-        notifyObservers()
     }
 
     fun hasEntry(dailyWeatherHolder: DailyWeatherHolder): Boolean{

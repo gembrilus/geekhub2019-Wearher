@@ -8,8 +8,8 @@ class SPHolder(private val context: Context, private val shPref: SharedPreferenc
 
     val map: MutableMap<String, String>
         get() {
-            val unit = shPref.getString(METRIC_SYSTEM_RESPONSE, "")!!
-            val keywords = shPref.getString(KEYWORDS_RESPONSE, context.getString(R.string.default_keywords))!!
+            val unit = getUnit()
+            val keywords = getKeywords()
             return when (unit) {
                 "" -> {
                     mutableMapOf(context.getString(R.string.keywords) to keywords)
@@ -32,5 +32,8 @@ class SPHolder(private val context: Context, private val shPref: SharedPreferenc
         shPref.edit().putString(KEYWORDS_RESPONSE, value).apply()
         map[context.getString(R.string.keywords)] = value
     }
+
+    fun getUnit(): String = shPref.getString(METRIC_SYSTEM_RESPONSE, "")!!
+    fun getKeywords(): String = shPref.getString(KEYWORDS_RESPONSE, context.getString(R.string.default_keywords))!!
 
 }

@@ -13,7 +13,7 @@
     <string name="metric_units" translatable="false">metric</string>
     <string name="imperial_units" translatable="false">imperial</string>
     <string name="keywords" translatable="false">q</string>
-    <string name="default_keywords" translatable="false">Cherkasy,ua</string>
+    <string name="default_keywords" translatable="false">Cherkasy</string>
 
 
     <string name="temperature_desc">Temperature: %1$10.2f %2$s</string>
@@ -69,7 +69,7 @@
     <string name="no_url_or_broken">On requested URL found nothing or response is not correct</string>
     <string name="server_error_500">500: Internal server error</string>
     <string name="unknown_error">Any happened. Error code %1$d</string>
-    <string name="programm_error">Request was successful.%nThere are any problems in your app</string>
+    <string name="programm_error">Request was successful. There are any problems in your app</string>
     <string name="error">Error!</string>
 
 

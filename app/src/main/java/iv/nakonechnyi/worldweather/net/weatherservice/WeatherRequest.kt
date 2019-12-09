@@ -6,8 +6,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import iv.nakonechnyi.worldweather.R
 import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
-import iv.nakonechnyi.worldweather.net.interseptors.AuthInterceptor
-import iv.nakonechnyi.worldweather.net.interseptors.LangInterceptor
+import iv.nakonechnyi.worldweather.net.interceptors.AuthInterceptor
+import iv.nakonechnyi.worldweather.net.interceptors.LangInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.Protocol

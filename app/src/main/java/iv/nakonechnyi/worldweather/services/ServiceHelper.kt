@@ -32,5 +32,4 @@ class ServiceHelper(private val context: Context) {
             )
         )
     }
-
 }
