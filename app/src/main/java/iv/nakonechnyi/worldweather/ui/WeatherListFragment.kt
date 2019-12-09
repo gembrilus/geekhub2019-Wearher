@@ -26,11 +26,11 @@ class WeatherListFragment : Fragment(){
         fun newInstance() = WeatherListFragment()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+/*    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         model.fetchWeatherForecast()
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,10 +50,12 @@ class WeatherListFragment : Fragment(){
         }
 
         swipe.setOnRefreshListener {
-            model.fetchWeatherForecast{swipe.isRefreshing = false}
+//            model.fetchWeatherForecast{swipe.isRefreshing = false}
+            model.refreshModel()
         }
 
         model.data.observe(this, Observer {
+            swipe.isRefreshing = false
             mAdapter.notifyDataSetChanged()
         })
     }

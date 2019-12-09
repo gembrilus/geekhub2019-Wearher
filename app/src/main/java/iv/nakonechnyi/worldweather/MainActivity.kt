@@ -1,6 +1,7 @@
 package iv.nakonechnyi.worldweather
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,8 +9,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
+import iv.nakonechnyi.worldweather.database.dao.WeatherDao
 import iv.nakonechnyi.worldweather.etc.ON_CHANGE_SETTINGS_CODE
 import iv.nakonechnyi.worldweather.etc.SETTINGS_CHANGED
+import iv.nakonechnyi.worldweather.etc.SPHolder
+import iv.nakonechnyi.worldweather.etc.SP_FILE
+import iv.nakonechnyi.worldweather.services.WeatherService
 import iv.nakonechnyi.worldweather.ui.model.WeatherModel
 import iv.nakonechnyi.worldweather.ui.MainDetailedFragment
 import iv.nakonechnyi.worldweather.ui.WeatherListAdapter
@@ -29,6 +34,7 @@ class MainActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        startService(Intent(this, WeatherService::class.java))
 
         val transaction = supportFragmentManager.beginTransaction()
         with(transaction) {
@@ -62,7 +68,10 @@ class MainActivity :
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data == null) return
         if(resultCode == Activity.RESULT_OK && requestCode == ON_CHANGE_SETTINGS_CODE){
-            if(data.getBooleanExtra(SETTINGS_CHANGED, false)) model.fetchWeatherForecast()
+            if(data.getBooleanExtra(SETTINGS_CHANGED, false))
+            startService(Intent(this, WeatherService::class.java))
+            model.refreshModel()
+            /*model.fetchWeatherForecast()*/
         }
         super.onActivityResult(requestCode, resultCode, data)
     }

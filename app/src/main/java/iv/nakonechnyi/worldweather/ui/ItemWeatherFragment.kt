@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import iv.nakonechnyi.worldweather.R
 import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
 import iv.nakonechnyi.worldweather.data.WeatherConditions
+import iv.nakonechnyi.worldweather.etc.SPHolder
 import iv.nakonechnyi.worldweather.etc.SP_FILE
 import iv.nakonechnyi.worldweather.etc.WEATHER_POS
 import iv.nakonechnyi.worldweather.ui.model.WeatherModel
@@ -59,7 +60,8 @@ class ItemWeatherFragment : Fragment(){
 
         private val ctx by lazy { requireContext() }
         private val shPref get() = ctx.getSharedPreferences(SP_FILE, Context.MODE_PRIVATE)
-        private val unit get() = getTemperatureSymbol(ctx, shPref.getString(ctx.getString(R.string.units), "")!!)
+        private val spHolder by lazy { SPHolder(ctx, shPref) }
+        private val unit get() = getTemperatureSymbol(ctx, spHolder.map[ctx.getString(R.string.units)] ?: "")
         private val imageId: Int get() = getImageIdByFileName(ctx, weatherConditions.weather[0].icon)
 
         @SuppressLint("DefaultLocale")
