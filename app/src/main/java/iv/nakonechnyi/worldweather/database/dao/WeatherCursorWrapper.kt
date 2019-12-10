@@ -2,6 +2,7 @@ package iv.nakonechnyi.worldweather.database.dao
 
 import android.database.Cursor
 import android.database.CursorWrapper
+import android.provider.BaseColumns
 import iv.nakonechnyi.worldweather.data.*
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.CityEntry
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.WeatherConditionsEntry
@@ -69,4 +70,6 @@ class WeatherCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
             snow = if (snow == null) null else mapOf("3h" to snow)
         )
     }
+
+    fun getId() = getLong(getColumnIndex(BaseColumns._ID))
 }

@@ -54,4 +54,6 @@
     <string name="map_layer_pressure">Атм. тиск</string>
     <string name="map_layer_temperature">Температура</string>
     <string name="map_layer_wind">Вітер</string>
+    <string name="check_for_new_weather_every_2_hous">Перевіряти погоду кожні 2 години</string>
+    <string name="service_scheduler">Планування задач</string>
 </resources>

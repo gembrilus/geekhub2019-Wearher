@@ -55,6 +55,8 @@
     <string name="settings_metric_unit">Metric</string>
     <string name="settings_imperial_unit">Imperial</string>
     <string name="settings_name">Settings</string>
+    <string name="check_for_new_weather_every_2_hous">Check for new weather every 2 hous</string>
+    <string name="service_scheduler">Service scheduler</string>
 
 
     <string name="map_layer_default_value" translatable="false">clouds_new</string>

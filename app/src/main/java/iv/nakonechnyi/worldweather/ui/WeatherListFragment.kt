@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import iv.nakonechnyi.worldweather.R
-import iv.nakonechnyi.worldweather.services.Status
-import iv.nakonechnyi.worldweather.services.WeatherService
+import iv.nakonechnyi.worldweather.services.weatherservice.Status
+import iv.nakonechnyi.worldweather.services.weatherservice.WeatherService
 import iv.nakonechnyi.worldweather.ui.model.WeatherModel
 import iv.nakonechnyi.worldweather.utils.showErrorMessage
 import kotlinx.android.synthetic.main.fragment_weather_list.*
@@ -49,7 +49,7 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
         }
 
         swipe.setOnRefreshListener {
-            model!!.refreshModel()
+            model?.refreshModel()
         }
 
         model!!.data.observe(this, Observer {

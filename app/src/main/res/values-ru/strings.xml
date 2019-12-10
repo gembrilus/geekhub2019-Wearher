@@ -55,4 +55,6 @@
     <string name="map_layer_pressure">Давление</string>
     <string name="map_layer_temperature">Температура</string>
     <string name="map_layer_wind">Ветер</string>
+    <string name="check_for_new_weather_every_2_hous">Проверять погоду каждые 2 часа</string>
+    <string name="service_scheduler">Планирование задач</string>
 </resources>

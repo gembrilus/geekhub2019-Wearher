@@ -19,11 +19,11 @@ class WeatherModel(application: Application) :
         ctx.getSharedPreferences(SP_FILE, Context.MODE_PRIVATE)
     )
 
-    private val weatherDao = WeatherDao(ctx)
+    private val weatherDao by lazy { WeatherDao(ctx) }
 
     private val dailyWeatherHolder: DailyWeatherHolder?
         get() {
-            val city: String = spHolder.getKeywords().replace(",.+".toRegex(), "")
+            val city: String = spHolder.keywords.replace(",.+".toRegex(), "")
             return weatherDao.take(city)
         }
 

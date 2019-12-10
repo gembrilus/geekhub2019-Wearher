@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_enter_sity"
+        android:textSize="@dimen/text_size_default"
+        android:textStyle="bold"
         android:textAlignment="center" />
 
     <View
@@ -19,17 +21,21 @@
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/keywords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:hint="@string/settings_city_country"
         android:textAlignment="center" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
         android:text="@string/settings_units"
+        android:textSize="@dimen/text_size_default"
+        android:textStyle="bold"
         android:textAlignment="center" />
 
     <View
@@ -43,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:padding="8dp">
+        android:paddingTop="8dp">
 
         <RadioButton
             android:id="@+id/standard"
@@ -68,5 +74,27 @@
             android:text="@string/settings_imperial_unit" />
 
     </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="@string/service_scheduler"
+        android:textSize="@dimen/text_size_default"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <CheckBox
+        android:id="@+id/scheduler_checker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="@string/check_for_new_weather_every_2_hous" />
 
 </LinearLayout>

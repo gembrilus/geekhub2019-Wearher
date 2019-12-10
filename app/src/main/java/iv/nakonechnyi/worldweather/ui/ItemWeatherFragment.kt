@@ -61,7 +61,7 @@ class ItemWeatherFragment : Fragment(){
         private val ctx by lazy { requireContext() }
         private val shPref get() = ctx.getSharedPreferences(SP_FILE, Context.MODE_PRIVATE)
         private val spHolder by lazy { SPHolder(ctx, shPref) }
-        private val unit get() = getTemperatureSymbol(ctx, spHolder.getUnit())
+        private val unit get() = getTemperatureSymbol(ctx, spHolder.units)
         private val imageId: Int get() = getImageIdByFileName(ctx, weatherConditions.weather[0].icon)
 
         @SuppressLint("DefaultLocale")

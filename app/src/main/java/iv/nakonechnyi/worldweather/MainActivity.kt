@@ -3,20 +3,20 @@ package iv.nakonechnyi.worldweather
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import iv.nakonechnyi.worldweather.etc.BROADCAST_ACTION_FILTER
 import iv.nakonechnyi.worldweather.etc.ON_CHANGE_SETTINGS_CODE
 import iv.nakonechnyi.worldweather.etc.SETTINGS_CHANGED
-import iv.nakonechnyi.worldweather.services.ServiceReceiver
-import iv.nakonechnyi.worldweather.services.WeatherService
-import iv.nakonechnyi.worldweather.ui.model.WeatherModel
+import iv.nakonechnyi.worldweather.services.weatherservice.ServiceReceiver
+import iv.nakonechnyi.worldweather.services.weatherservice.WeatherService
 import iv.nakonechnyi.worldweather.ui.MainDetailedFragment
 import iv.nakonechnyi.worldweather.ui.WeatherListAdapter
 import iv.nakonechnyi.worldweather.ui.WeatherListFragment
+import iv.nakonechnyi.worldweather.ui.model.WeatherModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity :
@@ -84,7 +84,6 @@ class MainActivity :
             if(data.getBooleanExtra(SETTINGS_CHANGED, false))
 
             startService(Intent(this, WeatherService::class.java))
-            model.refreshModel()
 
         }
         super.onActivityResult(requestCode, resultCode, data)

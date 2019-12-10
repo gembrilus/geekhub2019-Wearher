@@ -2,16 +2,16 @@ package iv.nakonechnyi.worldweather.database.dao
 
 import android.content.ContentValues
 import android.content.Context
-import iv.nakonechnyi.worldweather.data.*
+import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
+import iv.nakonechnyi.worldweather.data.WeatherConditions
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.CityEntry
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.WeatherConditionsEntry
 
 class WeatherDao(private val context: Context) {
 
-    private val database get() = WeatherDbHelper(context).writableDatabase
+    private val database = WeatherDbHelper(context).writableDatabase
 
     fun insert(dailyWeatherHolder: DailyWeatherHolder) {
-
         val cityId = database.insert(
             CityEntry.TABLE_NAME,
             null,
@@ -33,8 +33,7 @@ class WeatherDao(private val context: Context) {
         database.rawQuery(SELECT_WEATHER_BY_CITY_NAME, arrayOf(cityName))
             .run(::WeatherCursorWrapper)
             .use {cursor ->
-                if (cursor.count > 0) {
-                    cursor.moveToFirst()
+                    if (cursor.moveToFirst()){
                     val city = cursor.getCity()
                     weatherConditions.add(cursor.getWeatherCondition())
                     while (cursor.moveToNext()) {
@@ -50,26 +49,37 @@ class WeatherDao(private val context: Context) {
     }
 
     fun replace(dailyWeatherHolder: DailyWeatherHolder){
-        val index = database.delete(
+        var cityId = 0L
+
+        database.rawQuery(
+            SELECT_CITY_BY_NAME,
+            arrayOf(dailyWeatherHolder.city.name))
+            .run(::WeatherCursorWrapper)
+            .use { cursor ->
+                if (cursor.moveToFirst()){
+                    cityId = cursor.getId()
+                }
+            }
+
+        database.delete(
             CityEntry.TABLE_NAME,
             "${CityEntry.COLUMN_NAME_CITY} LIKE ?",
             arrayOf(dailyWeatherHolder.city.name))
 
-        repeat(dailyWeatherHolder.list.size) {
-            database.delete(
-                WeatherConditionsEntry.TABLE_NAME,
-                "${WeatherConditionsEntry.COLUMN_NAME_CITY_ID} LIKE ?",
-                arrayOf(index.toString())
-            )
-        }
+        database.delete(
+            WeatherConditionsEntry.TABLE_NAME,
+            "${WeatherConditionsEntry.COLUMN_NAME_CITY_ID} LIKE ?",
+            arrayOf(cityId.toString())
+        )
+
         insert(dailyWeatherHolder)
     }
 
-    fun hasEntry(dailyWeatherHolder: DailyWeatherHolder): Boolean{
+    fun hasEntry(dailyWeatherHolder: DailyWeatherHolder): Boolean {
         database.rawQuery(SELECT_CITY_BY_NAME, arrayOf(dailyWeatherHolder.city.name))
             .run(::WeatherCursorWrapper)
-            .use {cursor ->
-                return cursor.count > 0
+            .use { cursor ->
+                return cursor.count != 0
             }
     }
 

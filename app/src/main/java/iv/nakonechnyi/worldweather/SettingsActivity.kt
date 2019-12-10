@@ -21,6 +21,7 @@ import androidx.core.view.get
 import iv.nakonechnyi.worldweather.etc.SETTINGS_CHANGED
 import iv.nakonechnyi.worldweather.etc.SPHolder
 import iv.nakonechnyi.worldweather.etc.SP_FILE
+import iv.nakonechnyi.worldweather.services.jobscheduler.SchedulerJobService
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.prefs.Preferences
 
@@ -44,9 +45,9 @@ class SettingsActivity :
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
 
-        val map = spHolder.map
-        val _keywords = map[getString(R.string.keywords)]
-        val _unit = map[getString(R.string.units)]
+        val _keywords = spHolder.keywords
+        val _unit = spHolder.units
+        val _isSchedule = spHolder.isSchedule
 
         with(keywords) {
             setText(_keywords)
@@ -55,7 +56,7 @@ class SettingsActivity :
             }
 
             addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(p0: Editable?) = spHolder.setKeywords(p0.toString())
+                override fun afterTextChanged(p0: Editable?){ spHolder.keywords = p0.toString() }
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             })
@@ -73,9 +74,18 @@ class SettingsActivity :
                     R.id.imperial -> getString(R.string.imperial_units)
                     else -> ""
                 }
-                spHolder.setUnits(unit)
+                spHolder.units = unit
             }
         }
+
+        with(scheduler_checker){
+            isChecked = _isSchedule
+            setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) SchedulerJobService.scheduleJob(this@SettingsActivity)
+                else SchedulerJobService.cancelJob(this@SettingsActivity)
+            }
+        }
+
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
