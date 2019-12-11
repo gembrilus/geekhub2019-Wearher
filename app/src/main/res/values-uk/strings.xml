@@ -56,4 +56,5 @@
     <string name="map_layer_wind">Вітер</string>
     <string name="check_for_new_weather_every_2_hous">Перевіряти погоду кожні 2 години</string>
     <string name="service_scheduler">Планування задач</string>
+    <string name="actionbar_subtilte_on_no_internet">інтернет відсутній…</string>
 </resources>

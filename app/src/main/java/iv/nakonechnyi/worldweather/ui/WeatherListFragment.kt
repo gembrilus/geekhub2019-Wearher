@@ -50,18 +50,17 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
 
         swipe.setOnRefreshListener {
             model?.refreshModel()
+            model?.updateAppBarSubTitle()
         }
 
-        model!!.data.observe(this, Observer {
+        model?.data?.observe(this, Observer {
             mAdapter.notifyDataSetChanged()
-            swipe.isRefreshing = false
+            swipeSwitch(false)
         })
     }
 
     override fun start() {
-        if (swipe != null) {
-            swipe.isRefreshing = true
-        }
+        swipeSwitch(true)
     }
 
     override fun update() {
@@ -69,15 +68,14 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
     }
 
     override fun stop() {
-        if (swipe != null) {
-            swipe.isRefreshing = false
-        }
+        model?.noNetworkConnection(false)
+        swipeSwitch(false)
     }
 
     override fun onServiceError(status: Status) {
         when(status){
-            Status.NETWORK_ERROR -> {}
-            Status.FAILURE -> showErrorMessage(requireContext(), getString(R.string.unknown_error))
+            Status.NETWORK_ERROR -> model?.noNetworkConnection(true)
+            Status.FAILURE -> swipeSwitch(false)
         }
     }
 
@@ -89,4 +87,9 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
             else -> showErrorMessage(requireContext(), getString(R.string.error))
         }
     }
+
+    private fun swipeSwitch(value: Boolean){
+        if (swipe != null) swipe.isRefreshing = value
+    }
+
 }

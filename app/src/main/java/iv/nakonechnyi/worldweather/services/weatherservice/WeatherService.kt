@@ -33,9 +33,7 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
     override fun onHandleIntent(p0: Intent?) {
 
         sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
-            putExtra(SERVICE_STATUS,
-                Status.START
-            )
+            putExtra(SERVICE_STATUS, Status.START)
         })
 
         synchronized(this) {
@@ -55,16 +53,12 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
         (ctx.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager).run {
             if (activeNetwork == null || t is UnknownHostException) {
                 sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
-                    putExtra(SERVICE_STATUS,
-                        Status.NETWORK_ERROR
-                    )
+                    putExtra(SERVICE_STATUS, Status.NETWORK_ERROR)
                 })
             }
             if (call.isExecuted) {
                 sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
-                    putExtra(SERVICE_STATUS,
-                        Status.FAILURE
-                    )
+                    putExtra(SERVICE_STATUS, Status.FAILURE)
                 })
             }
         }
@@ -75,6 +69,11 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
         response: Response<DailyWeatherHolder>
     ) {
         if (response.isSuccessful) {
+
+            sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
+                putExtra(SERVICE_STATUS, Status.STOP)
+            })
+
             val dailyWeatherHolder = response.body()
             if (dailyWeatherHolder != null) {
                 if (!weatherDao.hasEntry(dailyWeatherHolder)) {
@@ -90,20 +89,21 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
                 }
 
                 sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
-                    putExtra(SERVICE_STATUS,
-                        Status.UPDATE
-                    )
+                    putExtra(SERVICE_STATUS, Status.UPDATE)
                 })
             }
         } else {
             sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
-                putExtra(SERVICE_STATUS,
-                    Status.ON_RESPONSE_ERROR
-                )
+                putExtra(SERVICE_STATUS, Status.ON_RESPONSE_ERROR)
                 putExtra(SERVICE_ERROR_CODE, response.code())
             })
         }
     }
+
+/*    override fun onDestroy() {
+        super.onDestroy()
+        weatherDao.closeDatabase()
+    }*/
 
     interface ServiceStatusListener {
         fun start()

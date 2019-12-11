@@ -4,26 +4,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.RadioButton
-import android.widget.TextView
-import androidx.core.content.getSystemService
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
-import androidx.core.view.forEachIndexed
-import androidx.core.view.get
 import iv.nakonechnyi.worldweather.etc.SETTINGS_CHANGED
 import iv.nakonechnyi.worldweather.etc.SPHolder
 import iv.nakonechnyi.worldweather.etc.SP_FILE
 import iv.nakonechnyi.worldweather.services.jobscheduler.SchedulerJobService
 import kotlinx.android.synthetic.main.activity_settings.*
-import java.util.prefs.Preferences
 
 class SettingsActivity :
     AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -51,7 +42,7 @@ class SettingsActivity :
 
         with(keywords) {
             setText(_keywords)
-            setOnEditorActionListener { view, _, _ ->
+            setOnEditorActionListener { _, _, _ ->
                 false
             }
 
@@ -80,7 +71,7 @@ class SettingsActivity :
 
         with(scheduler_checker){
             isChecked = _isSchedule
-            setOnCheckedChangeListener { buttonView, isChecked ->
+            setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) SchedulerJobService.scheduleJob(this@SettingsActivity)
                 else SchedulerJobService.cancelJob(this@SettingsActivity)
             }

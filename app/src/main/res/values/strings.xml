@@ -73,7 +73,7 @@
     <string name="unknown_error">Any happened. Error code %1$d</string>
     <string name="programm_error">Request was successful. There are any problems in your app</string>
     <string name="error">Error!</string>
-
+    <string name="actionbar_subtilte_on_no_internet">no internet…</string>
 
 
 </resources>

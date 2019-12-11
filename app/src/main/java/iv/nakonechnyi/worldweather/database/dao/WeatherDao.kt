@@ -7,7 +7,7 @@ import iv.nakonechnyi.worldweather.data.WeatherConditions
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.CityEntry
 import iv.nakonechnyi.worldweather.database.entries.WeatherDbScheme.WeatherConditionsEntry
 
-class WeatherDao(private val context: Context) {
+class WeatherDao(context: Context) {
 
     private val database = WeatherDbHelper(context).writableDatabase
 
