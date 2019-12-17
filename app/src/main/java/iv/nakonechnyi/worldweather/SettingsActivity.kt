@@ -72,6 +72,7 @@ class SettingsActivity :
         with(scheduler_checker){
             isChecked = _isSchedule
             setOnCheckedChangeListener { _, isChecked ->
+                spHolder.isSchedule = isChecked
                 if (isChecked) SchedulerJobService.scheduleJob(this@SettingsActivity)
                 else SchedulerJobService.cancelJob(this@SettingsActivity)
             }

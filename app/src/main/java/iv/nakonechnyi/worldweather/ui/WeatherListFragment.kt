@@ -1,5 +1,6 @@
 package iv.nakonechnyi.worldweather.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,7 +50,7 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
         }
 
         swipe.setOnRefreshListener {
-            model?.refreshModel()
+            activity?.startService(Intent(activity, WeatherService::class.java))
             model?.updateAppBarSubTitle()
         }
 
@@ -74,8 +75,12 @@ class WeatherListFragment : Fragment(), WeatherService.ServiceStatusListener{
 
     override fun onServiceError(status: Status) {
         when(status){
-            Status.NETWORK_ERROR -> model?.noNetworkConnection(true)
+            Status.NETWORK_ERROR -> {
+                model?.noNetworkConnection(true)
+                model?.refreshModel()
+            }
             Status.FAILURE -> swipeSwitch(false)
+            else -> {}
         }
     }
 

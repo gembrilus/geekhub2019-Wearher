@@ -33,7 +33,7 @@ class WeatherRequest(
         .protocols(listOf(Protocol.HTTP_1_1))
         .addInterceptor(LangInterceptor(context))
         .addInterceptor(AuthInterceptor(context))
-        .addInterceptor(ChuckerInterceptor(context))
+//        .addInterceptor(ChuckerInterceptor(context))
         .build()
 
     private val retrofit = Retrofit.Builder()

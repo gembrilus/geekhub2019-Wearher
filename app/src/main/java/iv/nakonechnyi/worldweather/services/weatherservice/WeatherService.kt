@@ -8,9 +8,6 @@ import android.net.ConnectivityManager
 import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
 import iv.nakonechnyi.worldweather.database.dao.WeatherDao
 import iv.nakonechnyi.worldweather.etc.*
-import iv.nakonechnyi.worldweather.etc.BROADCAST_ACTION_FILTER
-import iv.nakonechnyi.worldweather.etc.SERVICE_STATUS
-import iv.nakonechnyi.worldweather.etc.SP_FILE
 import iv.nakonechnyi.worldweather.net.weatherservice.WeatherRequest
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +27,8 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
         )
     }
 
+    private var isResponseReady = false
+
     override fun onHandleIntent(p0: Intent?) {
 
         sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
@@ -39,6 +38,10 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
         synchronized(this) {
             try {
                 fetchWeatherForecast()
+                @Suppress("ControlFlowWithEmptyBody")
+                while (!isResponseReady){}
+                isResponseReady = false
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -56,12 +59,13 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
                     putExtra(SERVICE_STATUS, Status.NETWORK_ERROR)
                 })
             }
+        }
             if (call.isExecuted) {
                 sendBroadcast(Intent(BROADCAST_ACTION_FILTER).apply {
                     putExtra(SERVICE_STATUS, Status.FAILURE)
                 })
             }
-        }
+        isResponseReady = true
     }
 
     override fun onResponse(
@@ -78,9 +82,9 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
             if (dailyWeatherHolder != null) {
                 if (!weatherDao.hasEntry(dailyWeatherHolder)) {
                     weatherDao.insert(dailyWeatherHolder)
-                    ServiceHelper(
+/*                    ServiceHelper(
                         ctx
-                    ).notifyWeatherWasInserted()
+                    ).notifyWeatherWasInserted()*/
                 } else if (weatherDao.wasEntryChanged(dailyWeatherHolder)) {
                     weatherDao.replace(dailyWeatherHolder)
                     ServiceHelper(
@@ -98,12 +102,13 @@ class WeatherService : IntentService(WeatherService::class.simpleName),
                 putExtra(SERVICE_ERROR_CODE, response.code())
             })
         }
+        isResponseReady = true
     }
 
-/*    override fun onDestroy() {
+    override fun onDestroy() {
         super.onDestroy()
         weatherDao.closeDatabase()
-    }*/
+    }
 
     interface ServiceStatusListener {
         fun start()

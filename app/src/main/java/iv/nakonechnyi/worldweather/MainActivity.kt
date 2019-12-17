@@ -89,7 +89,7 @@ class MainActivity :
         if(resultCode == Activity.RESULT_OK && requestCode == ON_CHANGE_SETTINGS_CODE){
             if(data.getBooleanExtra(SETTINGS_CHANGED, false))
 
-                model.update()
+                startService(Intent(this, WeatherService::class.java))
         }
         super.onActivityResult(requestCode, resultCode, data)
     }

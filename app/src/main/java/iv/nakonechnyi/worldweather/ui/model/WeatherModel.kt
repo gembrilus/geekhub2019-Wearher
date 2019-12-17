@@ -2,7 +2,6 @@ package iv.nakonechnyi.worldweather.ui.model
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +9,6 @@ import iv.nakonechnyi.worldweather.data.DailyWeatherHolder
 import iv.nakonechnyi.worldweather.database.dao.WeatherDao
 import iv.nakonechnyi.worldweather.etc.SPHolder
 import iv.nakonechnyi.worldweather.etc.SP_FILE
-import iv.nakonechnyi.worldweather.services.weatherservice.WeatherService
 
 class WeatherModel(application: Application) :
     AndroidViewModel(application) {
@@ -45,14 +43,6 @@ class WeatherModel(application: Application) :
     fun noNetworkConnection(value: Boolean) = _isNoNetworkConnection.postValue(value)
     fun updateAppBarSubTitle(){
         noNetworkConnection(isNoNetworkConnection.value ?: false)
-    }
-
-    fun update() {
-        if (isNoNetworkConnection.value!!){
-            refreshModel()
-        } else {
-            ctx.startService(Intent(ctx, WeatherService::class.java))
-        }
     }
 
     fun refreshModel() {
