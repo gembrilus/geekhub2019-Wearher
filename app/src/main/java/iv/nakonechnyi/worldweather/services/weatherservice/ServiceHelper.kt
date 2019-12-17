@@ -3,7 +3,7 @@ package iv.nakonechnyi.worldweather.services.weatherservice
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.chuckerteam.chucker.api.internal.ui.MainActivity
+import iv.nakonechnyi.worldweather.MainActivity
 import iv.nakonechnyi.worldweather.utils.makeActionNotification
 
 class ServiceHelper(private val context: Context) {
